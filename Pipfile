@@ -10,6 +10,8 @@ pylint = "*"
 [packages]
 apscheduler = "*"
 pandas ="*"
+matplotlib ="*"
+python-telegram-bot ="*"
 
 [requires]
 python_version = "3.7"
