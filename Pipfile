@@ -9,6 +9,7 @@ pylint = "*"
 
 [packages]
 apscheduler = "*"
+pandas ="*"
 
 [requires]
 python_version = "3.7"
