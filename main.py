@@ -74,7 +74,9 @@ def cronjob():
     times = []
     colorset = []
     data = pd.read_csv("data.csv", index_col ="startDate") 
-    df = data.loc[["2020-07-23"], ["diff" , "color"]] 
+    dt = datetime.now()
+    d = str(dt.date())
+    df = data.loc[[d], ["diff" , "color"]] 
     print(df)
 
     totaldiff = pd.Series(df['diff']).tolist() 
