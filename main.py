@@ -48,7 +48,7 @@ def cronjob():
                                         orderBy='startTime').execute()
     
     events = events_result.get('items', [])
-    f = open("data.csv", "a")
+    f = open("data.csv", "w")
     row="startDate,startTime,endDate,endTime,diff,color,title"+"\n"
     f.write(row)
     if not events:
@@ -74,7 +74,7 @@ def cronjob():
     times = []
     colorset = []
     data = pd.read_csv("data.csv", index_col ="startDate") 
-    df = data.loc[["2020-07-21"], ["diff" , "color"]] 
+    df = data.loc[["2020-07-23"], ["diff" , "color"]] 
     print(df)
 
     totaldiff = pd.Series(df['diff']).tolist() 
@@ -123,7 +123,7 @@ def cronjob():
     plt.pie(times, labels = labels,colors = colorset ,autopct='%1.2f%%')
     plt.title(titles)
     plt.savefig('activity.png')
-    plt.show()
+    #plt.show()
     bot = telegram.Bot('758389493:AAExlM5jAb1OvyG9ZBYXyPzbnaO2SslQUWo')
     bot.send_photo(chat_id='582942300', photo=open('activity.png', 'rb'))
-
+#cronjob()
