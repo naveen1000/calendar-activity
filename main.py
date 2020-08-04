@@ -1,19 +1,19 @@
 from __future__ import print_function
-import pandas as pd 
-from datetime import datetime, timedelta   
-from matplotlib import pyplot as plt
-import telegram
 import pickle
 import os.path
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
+from datetime import datetime, timedelta 
+import pandas as pd   
+from matplotlib import pyplot as plt
+import telegram
 
 
 def time_to_sec(time_str):
     return sum(x * int(t) for x, t in zip([1, 60, 3600], reversed(time_str.split(":"))))
 
-def cronjob():
+def grab_calendar_data():
     # If modifying these scopes, delete the file token.pickle.
     SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
     creds = None
@@ -70,6 +70,8 @@ def cronjob():
         f.write(row)
         print(startDate,startTime, endDate, endTime, diff, color , title )
     f.close()
+
+def plot_data():
     labels = []
     times = []
     colorset = []
@@ -104,7 +106,6 @@ def cronjob():
         if color == 11:
             colorset.append('red')
 
-
     df.set_index("color", inplace =True)
     for i1 in colors:
         d = df.loc[[i1]]
@@ -126,6 +127,14 @@ def cronjob():
     plt.title(titles)
     plt.savefig('activity.png')
     #plt.show()
+
+def notify():
     bot = telegram.Bot('758389493:AAExlM5jAb1OvyG9ZBYXyPzbnaO2SslQUWo')
     bot.send_photo(chat_id='582942300', photo=open('activity.png', 'rb'))
+
+def cronjob():
+    grab_calendar_data()
+    plot_data()
+    notify()
+
 #cronjob()
