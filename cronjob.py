@@ -30,7 +30,6 @@ def scheduling():
 
     #scheduler.add_job(cronjob, 'cron', hour='7', minute='45')
     scheduler.add_job(cronjob, 'cron', hour='11', minute='0')
-    scheduler.add_job(cronjob, 'cron', hour='13', minute='0')
     scheduler.add_job(cronjob, 'cron', hour='15', minute='30')
     #scheduler.add_job(cronjob, "interval", seconds=3600*4)
     #scheduler.add_job(cronjob2, "interval", seconds=50)

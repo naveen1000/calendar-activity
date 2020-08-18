@@ -122,7 +122,7 @@ def plot_data():
         labels.append(str(t))
 
     print(times , labels)
-    titles = totaltime + " of 12:00:00 hrs is Displaying"
+    titles ="Displaying for " + totaltime + " hrs"
     plt.pie(times, labels = labels,colors = colorset ,autopct='%1.2f%%')
     plt.title(titles)
     plt.savefig('activity.png')
@@ -131,6 +131,7 @@ def plot_data():
 def notify():
     bot = telegram.Bot('758389493:AAExlM5jAb1OvyG9ZBYXyPzbnaO2SslQUWo')
     bot.send_photo(chat_id='582942300', photo=open('activity.png', 'rb'))
+    os.remove("activity.png")
 
 def cronjob():
     grab_calendar_data()
