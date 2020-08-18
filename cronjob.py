@@ -7,7 +7,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 # Main cronjob function.
 from main import cronjob
 
-base = "https://api.telegram.org/bot758389493:AAExlM5jAb1OvyG9ZBYXyPzbnaO2SslQUWo/"
+base = "https://api.telegram.org/bot1228033872:AAHsI3oFOQLKVC7mmnVH0bNyQuPGitiBEXQ/"
 def get_updates(offset=None):
         url = base + "getUpdates?timeout=100"
         if offset:
@@ -37,6 +37,7 @@ def scheduling():
     scheduler.start()
 
 def triggering():
+    send_message('Started','582942300')
     update_id = None
     while True:
         try:
