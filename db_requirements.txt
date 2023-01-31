@@ -1,0 +1,6 @@
+requests==2.27.1
+python-telegram-bot==13.13
+opencv-python==4.7.0.68
+Pillow==9.2.0
+sounddevice==0.4.5
+scipy==1.10.0
